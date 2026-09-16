@@ -475,27 +475,27 @@
   }
 
   function handleConnect() {
-  var btn = document.getElementById('connectBtn');
-  btn.textContent = 'Connecting…';
-  btn.disabled = true;
-
-  var params = new URLSearchParams(window.location.search);
-
-  // Meraki passes base_grant_url — this is the actual auth endpoint
-  var baseGrantUrl = params.get('base_grant_url');
-  var userContinueUrl = params.get('user_continue_url') || 'https://www.flyorf.com';
-
-  if (baseGrantUrl) {
-    // Redirect to Meraki's grant URL to authorize the client
-    setTimeout(function() {
-      window.location.href = decodeURIComponent(baseGrantUrl) 
-        + '?continue_url=' + encodeURIComponent(decodeURIComponent(userContinueUrl));
-    }, 1000);
-  } else {
-    btn.textContent = 'Connected!';
-    btn.style.background = 'linear-gradient(135deg, #4CAF50 0%, #45a049 100%)';
+    var btn = document.getElementById('connectBtn');
+    btn.textContent = 'Connecting...';
+    btn.disabled = true;
+  
+    var params = new URLSearchParams(window.location.search);
+  
+    // Meraki passes base_grant_url — this is the actual auth endpoint
+    var baseGrantUrl = params.get('base_grant_url');
+    var userContinueUrl = params.get('user_continue_url') || 'https://www.flyorf.com';
+  
+    if (baseGrantUrl) {
+      // Redirect to Meraki's grant URL to authorize the client
+      setTimeout(function() {
+        window.location.href = decodeURIComponent(baseGrantUrl) + '?continue_url=' + encodeURIComponent(decodeURIComponent(userContinueUrl));
+      }, 1000);
+    } else {
+      btn.textContent = 'Connected!';
+      btn.style.background = 'linear-gradient(135deg, #4CAF50 0%, #45a049 100%)';
+    }
   }
-}
+  
   function openModal() {
     document.getElementById('aupModal').classList.add('open');
     document.body.style.overflow = 'hidden';
